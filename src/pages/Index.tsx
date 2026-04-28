@@ -3,10 +3,10 @@ import { LinkButton } from "@/components/LinkButton";
 import onfireLogo from "@/assets/onfire-logo.webp";
 
 const links = [
-  { label: "Cardápio", href: "#", icon: <UtensilsCrossed /> },
-  { label: "Nosso Site", href: "#", icon: <Globe /> },
-  { label: "Delivery (iFood)", href: "#", icon: <Bike /> },
-  { label: "Reservas (WhatsApp)", href: "#", icon: <MessageCircle /> },
+  { label: "Cardápio", href: "https://onfireamericanbbq.com.br/cardapios/", icon: <UtensilsCrossed /> },
+  { label: "Nosso Site", href: "https://onfireamericanbbq.com.br/", icon: <Globe /> },
+  { label: "Delivery (iFood)", href: "https://www.ifood.com.br/delivery/niteroi-rj/on-fire-american-bbq-sao-francisco/67c1c200-d85a-4732-8d66-98cf21a0c427", icon: <Bike /> },
+  { label: "Reservas (WhatsApp)", href: "https://api.whatsapp.com/send?phone=5521980689518", icon: <MessageCircle /> },
 ];
 
 const Index = () => {
@@ -36,7 +36,7 @@ const Index = () => {
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(180deg, rgba(20,4,2,0.55) 0%, rgba(40,8,3,0.55) 45%, rgba(10,2,1,0.85) 100%)",
+            "linear-gradient(180deg, rgba(8,2,1,0.78) 0%, rgba(20,4,2,0.65) 45%, rgba(5,1,0,0.92) 100%)",
         }}
       />
 
@@ -85,20 +85,29 @@ const Index = () => {
 
         {/* Handle + address */}
         <header className="text-center space-y-1.5 sm:space-y-2 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-100">
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight">
+          <h1
+            className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight"
+            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.7)" }}
+          >
             @onfire
           </h1>
-          <div className="flex items-center justify-center gap-1.5 text-white text-[13px] sm:text-sm">
-            <MapPin className="size-4 text-[#ff5d4a]" aria-hidden />
+          <div
+            className="flex items-center justify-center gap-1.5 text-white text-[13px] sm:text-sm"
+            style={{ textShadow: "0 1px 4px rgba(0,0,0,0.7)" }}
+          >
+            <MapPin className="size-4 text-[#ff7a5a]" aria-hidden />
             <span>São Francisco, Niterói</span>
           </div>
-          <p className="text-white/85 text-[13px] sm:text-sm">
+          <p
+            className="text-white text-[13px] sm:text-sm"
+            style={{ textShadow: "0 1px 4px rgba(0,0,0,0.7)" }}
+          >
             Av. Quintino Bocaiúva, 291
           </p>
         </header>
 
         {/* Divider */}
-        <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+        <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
 
         {/* Links */}
         <nav id="links" aria-label="Links principais" className="w-full flex flex-col gap-3">
@@ -114,8 +123,11 @@ const Index = () => {
         </nav>
 
         {/* Footer */}
-        <footer className="pt-4 sm:pt-6 text-center text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-white/65">
-          On Fire · American BBQ
+        <footer
+          className="pt-4 sm:pt-6 text-center text-[10px] sm:text-[11px] tracking-wide text-white/85"
+          style={{ textShadow: "0 1px 4px rgba(0,0,0,0.7)" }}
+        >
+          Copyright © 2024 OnFire | Todos os Direitos Reservados.
         </footer>
       </main>
     </div>
