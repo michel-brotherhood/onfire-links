@@ -85,20 +85,29 @@ const Index = () => {
 
         {/* Handle + address */}
         <header className="text-center space-y-1.5 sm:space-y-2 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-100">
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight">
+          <h1
+            className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight"
+            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.7)" }}
+          >
             @onfire
           </h1>
-          <div className="flex items-center justify-center gap-1.5 text-white text-[13px] sm:text-sm">
-            <MapPin className="size-4 text-[#ff5d4a]" aria-hidden />
+          <div
+            className="flex items-center justify-center gap-1.5 text-white text-[13px] sm:text-sm"
+            style={{ textShadow: "0 1px 4px rgba(0,0,0,0.7)" }}
+          >
+            <MapPin className="size-4 text-[#ff7a5a]" aria-hidden />
             <span>São Francisco, Niterói</span>
           </div>
-          <p className="text-white/85 text-[13px] sm:text-sm">
+          <p
+            className="text-white text-[13px] sm:text-sm"
+            style={{ textShadow: "0 1px 4px rgba(0,0,0,0.7)" }}
+          >
             Av. Quintino Bocaiúva, 291
           </p>
         </header>
 
         {/* Divider */}
-        <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+        <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
 
         {/* Links */}
         <nav id="links" aria-label="Links principais" className="w-full flex flex-col gap-3">
@@ -114,8 +123,11 @@ const Index = () => {
         </nav>
 
         {/* Footer */}
-        <footer className="pt-4 sm:pt-6 text-center text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-white/65">
-          On Fire · American BBQ
+        <footer
+          className="pt-4 sm:pt-6 text-center text-[10px] sm:text-[11px] tracking-wide text-white/85"
+          style={{ textShadow: "0 1px 4px rgba(0,0,0,0.7)" }}
+        >
+          Copyright © 2024 OnFire | Todos os Direitos Reservados.
         </footer>
       </main>
     </div>
