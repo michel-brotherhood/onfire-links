@@ -1,115 +1,107 @@
-import { MessageCircle, TrendingUp, Sparkles, Target, BarChart3, Brain } from "lucide-react";
-import { ServiceLink } from "@/components/ServiceLink";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import ramaLogo from "@/assets/rama-logo.png";
+import { MapPin, UtensilsCrossed, Globe, Bike, MessageCircle } from "lucide-react";
+import { LinkButton } from "@/components/LinkButton";
+import onfireLogo from "@/assets/onfire-logo.webp";
+
+const links = [
+  {
+    label: "Cardápio",
+    href: "#",
+    icon: <UtensilsCrossed />,
+  },
+  {
+    label: "Nosso Site",
+    href: "#",
+    icon: <Globe />,
+  },
+  {
+    label: "Delivery (iFood)",
+    href: "#",
+    icon: <Bike />,
+  },
+  {
+    label: "Reservas (WhatsApp)",
+    href: "#",
+    icon: <MessageCircle />,
+  },
+];
 
 const Index = () => {
-  const navigate = useNavigate();
-  const whatsappNumber = "5511982553815";
-  
-  const services = [
-    {
-      title: "Marketing Digital",
-      description: "Estratégias completas para sua marca crescer online",
-      href: `https://api.whatsapp.com/send/?phone=${whatsappNumber}&text=Olá! Gostaria de saber mais sobre *Marketing Digital* e como posso impulsionar minha marca online.&type=phone_number&app_absent=0`,
-      icon: <TrendingUp className="w-6 h-6" />,
-      iconAnimation: "animate-float-up",
-    },
-    {
-      title: "Gestão de Vendas",
-      description: "Otimização de processos e automação comercial",
-      href: `https://api.whatsapp.com/send/?phone=${whatsappNumber}&text=Olá! Tenho interesse em *Gestão de Vendas* e gostaria de otimizar os processos comerciais da minha empresa.&type=phone_number&app_absent=0`,
-      icon: <Target className="w-6 h-6" />,
-      iconAnimation: "animate-pulse-target",
-    },
-    {
-      title: "Inteligência Artificial",
-      description: "Soluções empresariais com IA de ponta",
-      href: `https://api.whatsapp.com/send/?phone=${whatsappNumber}&text=Olá! Quero conhecer as soluções de *Inteligência Artificial* para aplicar no meu negócio.&type=phone_number&app_absent=0`,
-      icon: <Brain className="w-6 h-6" />,
-      iconAnimation: "animate-pulse-glow",
-    },
-    {
-      title: "Analytics & Dados",
-      description: "Análise de métricas e insights estratégicos",
-      href: `https://api.whatsapp.com/send/?phone=${whatsappNumber}&text=Olá! Gostaria de entender melhor sobre *Analytics e Dados* para tomar decisões mais estratégicas.&type=phone_number&app_absent=0`,
-      icon: <BarChart3 className="w-6 h-6" />,
-      iconAnimation: "animate-bounce-chart",
-    },
-  ];
-
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 md:p-8 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 relative overflow-hidden bg-black">
       {/* Background Video */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 w-full h-full object-cover z-0 opacity-70"
       >
         <source src="/background-video.mp4" type="video/mp4" />
       </video>
-      
-      {/* Overlay to darken video */}
-      <div className="absolute inset-0 z-0" style={{ background: 'linear-gradient(135deg, hsl(150, 15%, 18%) 0%, hsl(150, 18%, 20%) 50%, hsl(148, 20%, 22%) 100%)', opacity: 0.95 }} />
-      
-      <div className="w-full max-w-2xl space-y-6 sm:space-y-8 animate-in fade-in duration-700 relative z-10">
-        {/* Logo e Header */}
-        <div className="text-center space-y-3 sm:space-y-4">
-          <div className="flex justify-center mb-2 sm:mb-3">
-            <img 
-              src={ramaLogo} 
-              alt="Rama Digital Logo" 
-              className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 object-contain drop-shadow-2xl"
-              style={{ animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}
-            />
-          </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight px-4">
-            Rama Digital
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-md mx-auto px-4">
-            Ecossistema de soluções empresariais com foco em Marketing, Vendas & IA
-          </p>
-          <div className="flex items-center justify-center gap-2 text-primary px-4">
-            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 animate-pulse" />
-            <span className="text-xs sm:text-sm font-medium">Transformando negócios digitalmente</span>
-          </div>
+
+      {/* Dark overlay */}
+      <div className="absolute inset-0 z-0 bg-black/65" />
+
+      {/* Vignette */}
+      <div className="absolute inset-0 z-0 vignette pointer-events-none" />
+
+      {/* Subtle orange glow accents */}
+      <div
+        aria-hidden
+        className="absolute -top-32 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full z-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,107,26,0.22) 0%, transparent 60%)",
+        }}
+      />
+
+      {/* Content */}
+      <main className="relative z-10 w-full max-w-sm sm:max-w-md flex flex-col items-center gap-8 py-10">
+        {/* Logo */}
+        <div
+          className="flex justify-center animate-in fade-in zoom-in-95 duration-700"
+          style={{ filter: "drop-shadow(0 12px 32px rgba(255,107,26,0.45))" }}
+        >
+          <img
+            src={onfireLogo}
+            alt="ON Fire American BBQ"
+            className="w-40 sm:w-48 h-auto object-contain"
+          />
         </div>
 
-        {/* Links de Serviços */}
-        <div className="space-y-3 sm:space-y-4 pt-2 sm:pt-4 flex flex-col items-center w-full px-4">
-          {services.map((service, index) => (
+        {/* Handle + address */}
+        <header className="text-center space-y-2 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-100">
+          <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            @onfire
+          </h1>
+          <div className="flex items-center justify-center gap-1.5 text-white/85 text-sm">
+            <MapPin className="size-4 text-[#ff8a3d]" aria-hidden />
+            <span>São Francisco, Niterói</span>
+          </div>
+          <p className="text-white/70 text-sm">Av. Quintino Bocaiúva, 291</p>
+        </header>
+
+        {/* Divider */}
+        <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+
+        {/* Links */}
+        <nav className="w-full flex flex-col gap-3.5">
+          {links.map((link, i) => (
             <div
-              key={service.title}
-              className="animate-in slide-in-from-bottom duration-500 w-full flex justify-center"
-              style={{ animationDelay: `${index * 100}ms` }}
+              key={link.label}
+              className="animate-in fade-in slide-in-from-bottom-3 duration-500"
+              style={{ animationDelay: `${200 + i * 90}ms`, animationFillMode: "backwards" }}
             >
-              <ServiceLink {...service} />
+              <LinkButton {...link} />
             </div>
           ))}
-        </div>
-
-        {/* WhatsApp CTA */}
-        <div className="pt-4 sm:pt-6 animate-in fade-in duration-700 delay-500 flex justify-center px-4">
-          <Button
-            onClick={() => navigate("/atendimento")}
-            variant="accent"
-            size="xl"
-            className="w-full max-w-md animate-pulse text-sm sm:text-base"
-            style={{ animationDuration: '3s' }}
-          >
-            <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-12 transition-smooth" />
-            Quero falar com um especialista
-          </Button>
-        </div>
+        </nav>
 
         {/* Footer */}
-        <div className="text-center pt-6 sm:pt-8 text-xs sm:text-sm text-muted-foreground px-4">
-          <p>© 2024 Rama Digital. Todos os direitos reservados.</p>
-        </div>
-      </div>
+        <footer className="pt-6 text-center text-[11px] uppercase tracking-[0.2em] text-white/50">
+          On Fire · American BBQ
+        </footer>
+      </main>
     </div>
   );
 };
