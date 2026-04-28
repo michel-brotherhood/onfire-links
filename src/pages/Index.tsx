@@ -15,7 +15,7 @@ const Index = () => {
       className="min-h-screen flex items-center justify-center px-4 py-6 sm:p-6 relative overflow-hidden"
       style={{
         background:
-          "linear-gradient(135deg, #061410 0%, #0d2a1f 45%, #103527 75%, #0a2018 100%)",
+          "radial-gradient(ellipse at 50% 110%, #ff6a1a 0%, #c2280a 25%, #5a0d05 55%, #1a0603 85%, #0a0200 100%)",
       }}
     >
       {/* Background Video */}
