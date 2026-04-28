@@ -43,13 +43,21 @@ const Index = () => {
       {/* Vignette */}
       <div className="absolute inset-0 z-0 vignette pointer-events-none" />
 
-      {/* Subtle red glow accent */}
+      {/* Fire glow accent */}
       <div
         aria-hidden
-        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full z-0 pointer-events-none"
+        className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[720px] h-[720px] rounded-full z-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(225,29,42,0.18) 0%, transparent 60%)",
+            "radial-gradient(circle, rgba(255,140,40,0.45) 0%, rgba(225,60,15,0.25) 40%, transparent 70%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute -top-32 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full z-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,90,30,0.28) 0%, transparent 60%)",
         }}
       />
 
