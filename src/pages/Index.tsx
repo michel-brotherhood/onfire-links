@@ -49,6 +49,9 @@ const Section = ({ icon, title, subtitle, children }: SectionProps) => (
 );
 
 const Index = () => {
+  const todayKey = new Date().getDay();
+  const [selectedDay, setSelectedDay] = useState<number>(todayKey);
+
   return (
     <div
       className="min-h-screen flex items-start justify-center px-4 py-6 sm:p-6 relative overflow-hidden bg-black"
@@ -165,12 +168,67 @@ const Index = () => {
             title="Horários de funcionamento"
             subtitle="Confira nossos horários de atendimento."
           >
+            {/* Day selector */}
+            <div
+              role="tablist"
+              aria-label="Selecionar dia da semana"
+              className="grid grid-cols-7 gap-1 mb-3"
+            >
+              {DAYS.map((d) => {
+                const active = selectedDay === d.key;
+                const isToday = todayKey === d.key;
+                return (
+                  <button
+                    key={d.key}
+                    role="tab"
+                    aria-selected={active}
+                    onClick={() => setSelectedDay(d.key)}
+                    className={`relative py-1.5 rounded-lg text-[11px] sm:text-xs font-bold uppercase tracking-wide transition-all
+                      focus:outline-none focus-visible:ring-2 focus-visible:ring-white
+                      ${active
+                        ? "bg-gradient-to-b from-[#e11d2a] to-[#9b0a14] text-white ring-1 ring-white/30 shadow-[0_4px_12px_-4px_rgba(225,29,42,0.7)]"
+                        : "bg-white/10 text-white/80 hover:bg-white/15 ring-1 ring-white/10"}`}
+                  >
+                    {d.short}
+                    {isToday && !active && (
+                      <span className="absolute -top-0.5 -right-0.5 size-1.5 rounded-full bg-[#ff6a1a]" aria-hidden />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Highlighted hours */}
+            <div className="rounded-xl bg-gradient-to-r from-[#e11d2a]/20 to-[#9b0a14]/10 ring-1 ring-[#e11d2a]/40 px-4 py-3 mb-3">
+              <p className="text-[11px] uppercase tracking-[0.18em] text-white/70 mb-0.5">
+                {DAYS.find((d) => d.key === selectedDay)?.label}
+                {todayKey === selectedDay && <span className="ml-2 text-[#ff8a5a] normal-case tracking-normal">· Hoje</span>}
+              </p>
+              <p className="text-base sm:text-lg font-bold text-white">
+                {DAYS.find((d) => d.key === selectedDay)?.hours}
+              </p>
+            </div>
+
+            {/* Full schedule */}
             <ul className="space-y-1">
-              <li><span className="text-white/70">Segunda</span> — fechado</li>
-              <li><span className="text-white/70">Terça a quinta</span> — 11:30 às 23h</li>
-              <li><span className="text-white/70">Sexta e sábado</span> — 11:30 às 00h</li>
-              <li><span className="text-white/70">Domingo</span> — 11:30 às 23h</li>
-              <li><span className="text-white/70">Feriados</span> — 11:30 às 00h</li>
+              {DAYS.slice(1).concat(DAYS[0]).map((d) => {
+                const active = selectedDay === d.key;
+                return (
+                  <li
+                    key={d.key}
+                    className={`flex items-center justify-between rounded-md px-2 py-1 transition-colors ${
+                      active ? "bg-white/10 text-white" : "text-white/85"
+                    }`}
+                  >
+                    <span className={active ? "font-semibold" : "text-white/70"}>{d.label}</span>
+                    <span className={active ? "font-semibold" : ""}>{d.hours}</span>
+                  </li>
+                );
+              })}
+              <li className="flex items-center justify-between rounded-md px-2 py-1 text-white/85">
+                <span className="text-white/70">Feriados</span>
+                <span>11:30 às 00h</span>
+              </li>
             </ul>
           </Section>
 
