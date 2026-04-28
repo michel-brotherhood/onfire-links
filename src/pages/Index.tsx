@@ -36,7 +36,7 @@ const Index = () => {
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(180deg, rgba(6,20,16,0.78) 0%, rgba(10,32,24,0.88) 60%, rgba(4,12,9,0.95) 100%)",
+            "linear-gradient(180deg, rgba(20,4,2,0.55) 0%, rgba(40,8,3,0.55) 45%, rgba(10,2,1,0.85) 100%)",
         }}
       />
 
