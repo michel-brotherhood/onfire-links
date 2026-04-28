@@ -108,6 +108,19 @@ All colors MUST be HSL.
   }
 }
 
+/* Hide scrollbars across browsers while keeping scroll functional */
+html, body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
 @layer utilities {
   .glass-card {
     background: var(--gradient-card);
