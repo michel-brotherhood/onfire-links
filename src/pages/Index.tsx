@@ -3,89 +3,97 @@ import { LinkButton } from "@/components/LinkButton";
 import onfireLogo from "@/assets/onfire-logo.webp";
 
 const links = [
-  {
-    label: "Cardápio",
-    href: "#",
-    icon: <UtensilsCrossed />,
-  },
-  {
-    label: "Nosso Site",
-    href: "#",
-    icon: <Globe />,
-  },
-  {
-    label: "Delivery (iFood)",
-    href: "#",
-    icon: <Bike />,
-  },
-  {
-    label: "Reservas (WhatsApp)",
-    href: "#",
-    icon: <MessageCircle />,
-  },
+  { label: "Cardápio", href: "#", icon: <UtensilsCrossed /> },
+  { label: "Nosso Site", href: "#", icon: <Globe /> },
+  { label: "Delivery (iFood)", href: "#", icon: <Bike /> },
+  { label: "Reservas (WhatsApp)", href: "#", icon: <MessageCircle /> },
 ];
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 relative overflow-hidden bg-black">
+    <div
+      className="min-h-screen flex items-center justify-center px-4 py-6 sm:p-6 relative overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(135deg, #061410 0%, #0d2a1f 45%, #103527 75%, #0a2018 100%)",
+      }}
+    >
       {/* Background Video */}
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0 opacity-70"
+        aria-hidden
+        className="absolute inset-0 w-full h-full object-cover z-0 opacity-25 sm:opacity-30"
       >
         <source src="/background-video.mp4" type="video/mp4" />
       </video>
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 z-0 bg-black/65" />
+      {/* Green tinted overlay for legibility */}
+      <div
+        aria-hidden
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(6,20,16,0.78) 0%, rgba(10,32,24,0.88) 60%, rgba(4,12,9,0.95) 100%)",
+        }}
+      />
 
       {/* Vignette */}
       <div className="absolute inset-0 z-0 vignette pointer-events-none" />
 
-      {/* Subtle orange glow accents */}
+      {/* Subtle red glow accent */}
       <div
         aria-hidden
-        className="absolute -top-32 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full z-0 pointer-events-none"
+        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full z-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(255,107,26,0.22) 0%, transparent 60%)",
+            "radial-gradient(circle, rgba(225,29,42,0.18) 0%, transparent 60%)",
         }}
       />
 
+      {/* Skip-to-content for keyboard users */}
+      <a
+        href="#links"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:px-3 focus:py-2 focus:rounded-md focus:bg-white focus:text-black focus:font-medium"
+      >
+        Pular para os links
+      </a>
+
       {/* Content */}
-      <main className="relative z-10 w-full max-w-sm sm:max-w-md flex flex-col items-center gap-8 py-10">
+      <main className="relative z-10 w-full max-w-[22rem] sm:max-w-md flex flex-col items-center gap-6 sm:gap-8 py-6 sm:py-10">
         {/* Logo */}
         <div
           className="flex justify-center animate-in fade-in zoom-in-95 duration-700"
-          style={{ filter: "drop-shadow(0 12px 32px rgba(255,107,26,0.45))" }}
+          style={{ filter: "drop-shadow(0 12px 32px rgba(225,29,42,0.45))" }}
         >
           <img
             src={onfireLogo}
             alt="ON Fire American BBQ"
-            className="w-40 sm:w-48 h-auto object-contain"
+            className="w-32 sm:w-44 md:w-48 h-auto object-contain"
           />
         </div>
 
         {/* Handle + address */}
-        <header className="text-center space-y-2 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-100">
-          <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+        <header className="text-center space-y-1.5 sm:space-y-2 animate-in fade-in slide-in-from-bottom-2 duration-700 delay-100">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight">
             @onfire
           </h1>
-          <div className="flex items-center justify-center gap-1.5 text-white/85 text-sm">
-            <MapPin className="size-4 text-[#ff8a3d]" aria-hidden />
+          <div className="flex items-center justify-center gap-1.5 text-white text-[13px] sm:text-sm">
+            <MapPin className="size-4 text-[#ff5d4a]" aria-hidden />
             <span>São Francisco, Niterói</span>
           </div>
-          <p className="text-white/70 text-sm">Av. Quintino Bocaiúva, 291</p>
+          <p className="text-white/85 text-[13px] sm:text-sm">
+            Av. Quintino Bocaiúva, 291
+          </p>
         </header>
 
         {/* Divider */}
         <div className="h-px w-16 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
         {/* Links */}
-        <nav className="w-full flex flex-col gap-3.5">
+        <nav id="links" aria-label="Links principais" className="w-full flex flex-col gap-3">
           {links.map((link, i) => (
             <div
               key={link.label}
@@ -98,7 +106,7 @@ const Index = () => {
         </nav>
 
         {/* Footer */}
-        <footer className="pt-6 text-center text-[11px] uppercase tracking-[0.2em] text-white/50">
+        <footer className="pt-4 sm:pt-6 text-center text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-white/65">
           On Fire · American BBQ
         </footer>
       </main>
