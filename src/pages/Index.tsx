@@ -1,6 +1,17 @@
+import { useState, useEffect } from "react";
 import { MapPin, UtensilsCrossed, Globe, Bike, MessageCircle, Users, Clock, Cake, Tv, Beer, Sandwich, CreditCard } from "lucide-react";
 import { LinkButton } from "@/components/LinkButton";
 import onfireLogo from "@/assets/onfire-logo.webp";
+
+const DAYS = [
+  { key: 0, short: "Dom", label: "Domingo", hours: "11:30 às 23h" },
+  { key: 1, short: "Seg", label: "Segunda", hours: "Fechado" },
+  { key: 2, short: "Ter", label: "Terça", hours: "11:30 às 23h" },
+  { key: 3, short: "Qua", label: "Quarta", hours: "11:30 às 23h" },
+  { key: 4, short: "Qui", label: "Quinta", hours: "11:30 às 23h" },
+  { key: 5, short: "Sex", label: "Sexta", hours: "11:30 às 00h" },
+  { key: 6, short: "Sáb", label: "Sábado", hours: "11:30 às 00h" },
+];
 
 const links = [
   { label: "Cardápio", href: "https://onfireamericanbbq.com.br/cardapios/", icon: <UtensilsCrossed /> },
