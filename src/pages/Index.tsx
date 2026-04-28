@@ -15,7 +15,7 @@ const Index = () => {
       className="min-h-screen flex items-center justify-center px-4 py-6 sm:p-6 relative overflow-hidden"
       style={{
         background:
-          "linear-gradient(135deg, #061410 0%, #0d2a1f 45%, #103527 75%, #0a2018 100%)",
+          "radial-gradient(ellipse at 50% 110%, #ff6a1a 0%, #c2280a 25%, #5a0d05 55%, #1a0603 85%, #0a0200 100%)",
       }}
     >
       {/* Background Video */}
@@ -36,20 +36,28 @@ const Index = () => {
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(180deg, rgba(6,20,16,0.78) 0%, rgba(10,32,24,0.88) 60%, rgba(4,12,9,0.95) 100%)",
+            "linear-gradient(180deg, rgba(20,4,2,0.55) 0%, rgba(40,8,3,0.55) 45%, rgba(10,2,1,0.85) 100%)",
         }}
       />
 
       {/* Vignette */}
       <div className="absolute inset-0 z-0 vignette pointer-events-none" />
 
-      {/* Subtle red glow accent */}
+      {/* Fire glow accent */}
       <div
         aria-hidden
-        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full z-0 pointer-events-none"
+        className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[720px] h-[720px] rounded-full z-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(225,29,42,0.18) 0%, transparent 60%)",
+            "radial-gradient(circle, rgba(255,140,40,0.45) 0%, rgba(225,60,15,0.25) 40%, transparent 70%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="absolute -top-32 left-1/2 -translate-x-1/2 w-[520px] h-[520px] rounded-full z-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,90,30,0.28) 0%, transparent 60%)",
         }}
       />
 
