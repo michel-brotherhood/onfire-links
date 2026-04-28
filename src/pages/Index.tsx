@@ -3,10 +3,10 @@ import { LinkButton } from "@/components/LinkButton";
 import onfireLogo from "@/assets/onfire-logo.webp";
 
 const links = [
-  { label: "Cardápio", href: "#", icon: <UtensilsCrossed /> },
-  { label: "Nosso Site", href: "#", icon: <Globe /> },
-  { label: "Delivery (iFood)", href: "#", icon: <Bike /> },
-  { label: "Reservas (WhatsApp)", href: "#", icon: <MessageCircle /> },
+  { label: "Cardápio", href: "https://onfireamericanbbq.com.br/cardapios/", icon: <UtensilsCrossed /> },
+  { label: "Nosso Site", href: "https://onfireamericanbbq.com.br/", icon: <Globe /> },
+  { label: "Delivery (iFood)", href: "https://www.ifood.com.br/delivery/niteroi-rj/on-fire-american-bbq-sao-francisco/67c1c200-d85a-4732-8d66-98cf21a0c427", icon: <Bike /> },
+  { label: "Reservas (WhatsApp)", href: "https://api.whatsapp.com/send?phone=5521980689518", icon: <MessageCircle /> },
 ];
 
 const Index = () => {
