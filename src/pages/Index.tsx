@@ -65,13 +65,21 @@ const Index = () => {
         <source src="/background-video.mp4" type="video/mp4" />
       </video>
 
-      {/* Subtle bottom gradient only — keeps churrasqueira visible */}
+      {/* Stronger overlay for readability */}
       <div
         aria-hidden
         className="fixed inset-0 z-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.35) 75%, rgba(0,0,0,0.65) 100%)",
+            "linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.7) 75%, rgba(0,0,0,0.9) 100%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="fixed inset-0 z-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 30%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%)",
         }}
       />
 
