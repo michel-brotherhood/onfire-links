@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MapPin, UtensilsCrossed, Globe, Bike, MessageCircle, Users, Clock, Cake, Tv, Beer, Sandwich, CreditCard } from "lucide-react";
 import { LinkButton } from "@/components/LinkButton";
 import onfireLogo from "@/assets/onfire-logo.webp";
