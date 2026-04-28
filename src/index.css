@@ -150,6 +150,19 @@ All colors MUST be HSL.
     75% { transform: translateY(2px) scaleY(0.95); }
   }
 
+  @keyframes shimmer-slide {
+    0% { transform: translateX(-150%) skewX(-20deg); }
+    100% { transform: translateX(250%) skewX(-20deg); }
+  }
+
+  .animate-shimmer-slide {
+    animation: shimmer-slide 2.4s ease-in-out infinite;
+  }
+
+  .vignette {
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.85) 100%);
+  }
+
   .animate-float-up {
     animation: float-up 2.5s ease-in-out infinite;
   }
