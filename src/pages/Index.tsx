@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MapPin, UtensilsCrossed, Globe, Bike, MessageCircle, Users, Clock, Cake, Tv, Beer, Sandwich, CreditCard } from "lucide-react";
 import { LinkButton } from "@/components/LinkButton";
 import onfireLogo from "@/assets/onfire-logo.webp";
+import seloBbq from "@/assets/selo-bbq.svg";
 
 const DAYS = [
   { key: 0, short: "Dom", label: "Domingo", hours: "11:30 às 23h" },
