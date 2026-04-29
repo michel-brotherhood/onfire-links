@@ -97,15 +97,22 @@ const Index = () => {
 
       {/* Content */}
       <main className="relative z-10 w-full max-w-[22rem] sm:max-w-md flex flex-col items-center gap-6 sm:gap-8 py-6 sm:py-10">
-        {/* Logo */}
+        {/* Logo + selo */}
         <div
-          className="flex justify-center animate-in fade-in zoom-in-95 duration-700"
-          style={{ filter: "drop-shadow(0 12px 32px rgba(225,29,42,0.55))" }}
+          className="relative flex justify-center w-full animate-in fade-in zoom-in-95 duration-700"
         >
           <img
             src={onfireLogo}
             alt="ON Fire American BBQ"
             className="w-32 sm:w-44 md:w-48 h-auto object-contain"
+            style={{ filter: "drop-shadow(0 12px 32px rgba(225,29,42,0.55))" }}
+          />
+          <img
+            src={seloBbq}
+            alt="Selo Authentic American BBQ"
+            aria-hidden
+            className="absolute -right-2 sm:right-4 -bottom-3 sm:-bottom-4 w-16 sm:w-20 md:w-24 h-auto -rotate-12 animate-float-up"
+            style={{ filter: "drop-shadow(0 8px 18px rgba(0,0,0,0.55))" }}
           />
         </div>
 
