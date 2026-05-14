@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { MapPin, UtensilsCrossed, Globe, Bike, MessageCircle, Users, Clock, Cake, Tv, Beer, Sandwich, CreditCard } from "lucide-react";
+import { MapPin, UtensilsCrossed, Globe, Bike, MessageCircle, Users, Clock, Cake, Tv, Beer, Sandwich, CreditCard, ChevronLeft, ChevronRight, X } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import { LinkButton } from "@/components/LinkButton";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import onfireLogo from "@/assets/onfire-logo.webp";
 import seloBbq from "@/assets/selo-bbq.svg";
 import casa1 from "@/assets/casa/onfire-1.jpg";
