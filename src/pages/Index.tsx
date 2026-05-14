@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { MapPin, UtensilsCrossed, Globe, Bike, MessageCircle, Users, Clock, Cake, Tv, Beer, Sandwich, CreditCard, ChevronLeft, ChevronRight, X } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import { LinkButton } from "@/components/LinkButton";
