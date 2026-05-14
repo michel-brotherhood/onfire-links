@@ -78,9 +78,51 @@ const Index = () => {
   const todayKey = new Date().getDay();
   const [selectedDay, setSelectedDay] = useState<number>(todayKey);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const lightboxOpen = lightboxIndex !== null;
   const showPrev = () => setLightboxIndex((i) => (i === null ? i : (i - 1 + CASA_FOTOS.length) % CASA_FOTOS.length));
   const showNext = () => setLightboxIndex((i) => (i === null ? i : (i + 1) % CASA_FOTOS.length));
+
+  // Cache of preloaded URLs to avoid duplicate fetches
+  const preloadedRef = useRef<Set<string>>(new Set());
+  const preload = useCallback((url?: string) => {
+    if (!url || preloadedRef.current.has(url)) return;
+    preloadedRef.current.add(url);
+    const img = new Image();
+    img.decoding = "async";
+    img.src = url;
+  }, []);
+
+  // Track carousel slide changes and preload neighboring thumbs + their full versions
+  useEffect(() => {
+    if (!carouselApi) return;
+    const onSelect = () => {
+      const idx = carouselApi.selectedScrollSnap();
+      setCurrentSlide(idx);
+      const len = CASA_FOTOS.length;
+      // Preload neighbors (thumb + full) so swiping/opening lightbox is instant
+      [-1, 1, 2].forEach((offset) => {
+        const target = CASA_FOTOS[(idx + offset + len) % len];
+        preload(target.src);
+        preload(target.full);
+      });
+    };
+    onSelect();
+    carouselApi.on("select", onSelect);
+    return () => {
+      carouselApi.off("select", onSelect);
+    };
+  }, [carouselApi, preload]);
+
+  // When lightbox opens, preload prev/next full images
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const len = CASA_FOTOS.length;
+    preload(CASA_FOTOS[(lightboxIndex + 1) % len].full);
+    preload(CASA_FOTOS[(lightboxIndex - 1 + len) % len].full);
+  }, [lightboxIndex, preload]);
+
 
   return (
     <div
