@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { MapPin, UtensilsCrossed, Globe, Bike, MessageCircle, Users, Clock, Cake, Tv, Beer, Sandwich, CreditCard, ChevronLeft, ChevronRight, X } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import { LinkButton } from "@/components/LinkButton";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import onfireLogo from "@/assets/onfire-logo.webp";
@@ -78,9 +78,51 @@ const Index = () => {
   const todayKey = new Date().getDay();
   const [selectedDay, setSelectedDay] = useState<number>(todayKey);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const lightboxOpen = lightboxIndex !== null;
   const showPrev = () => setLightboxIndex((i) => (i === null ? i : (i - 1 + CASA_FOTOS.length) % CASA_FOTOS.length));
   const showNext = () => setLightboxIndex((i) => (i === null ? i : (i + 1) % CASA_FOTOS.length));
+
+  // Cache of preloaded URLs to avoid duplicate fetches
+  const preloadedRef = useRef<Set<string>>(new Set());
+  const preload = useCallback((url?: string) => {
+    if (!url || preloadedRef.current.has(url)) return;
+    preloadedRef.current.add(url);
+    const img = new Image();
+    img.decoding = "async";
+    img.src = url;
+  }, []);
+
+  // Track carousel slide changes and preload neighboring thumbs + their full versions
+  useEffect(() => {
+    if (!carouselApi) return;
+    const onSelect = () => {
+      const idx = carouselApi.selectedScrollSnap();
+      setCurrentSlide(idx);
+      const len = CASA_FOTOS.length;
+      // Preload neighbors (thumb + full) so swiping/opening lightbox is instant
+      [-1, 1, 2].forEach((offset) => {
+        const target = CASA_FOTOS[(idx + offset + len) % len];
+        preload(target.src);
+        preload(target.full);
+      });
+    };
+    onSelect();
+    carouselApi.on("select", onSelect);
+    return () => {
+      carouselApi.off("select", onSelect);
+    };
+  }, [carouselApi, preload]);
+
+  // When lightbox opens, preload prev/next full images
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const len = CASA_FOTOS.length;
+    preload(CASA_FOTOS[(lightboxIndex + 1) % len].full);
+    preload(CASA_FOTOS[(lightboxIndex - 1 + len) % len].full);
+  }, [lightboxIndex, preload]);
+
 
   return (
     <div
@@ -204,6 +246,7 @@ const Index = () => {
           <Carousel
             opts={{ loop: true, align: "start" }}
             plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]}
+            setApi={setCarouselApi}
             className="w-full -mt-1"
             aria-label="Fotos do espaço On Fire"
           >
@@ -213,13 +256,17 @@ const Index = () => {
                   <button
                     type="button"
                     onClick={() => setLightboxIndex(i)}
+                    onMouseEnter={() => preload(foto.full)}
+                    onTouchStart={() => preload(foto.full)}
+                    onFocus={() => preload(foto.full)}
                     className="group relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.8)] aspect-[4/3] bg-black/40 w-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ff7a5a] cursor-zoom-in"
                     aria-label={`Ampliar foto: ${foto.alt}`}
                   >
                     <img
                       src={foto.src}
                       alt={foto.alt}
-                      loading="lazy"
+                      loading={i < 2 ? "eager" : "lazy"}
+                      fetchPriority={i === 0 ? "high" : "auto"}
                       decoding="async"
                       width={800}
                       height={600}
@@ -233,6 +280,7 @@ const Index = () => {
             <CarouselPrevious className="left-2 hidden sm:flex bg-black/60 border-white/20 text-white hover:bg-black/80 hover:text-white" />
             <CarouselNext className="right-2 hidden sm:flex bg-black/60 border-white/20 text-white hover:bg-black/80 hover:text-white" />
           </Carousel>
+
 
           <Section
             icon={<Clock />}
