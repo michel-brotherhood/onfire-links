@@ -200,15 +200,20 @@ const Index = () => {
             <CarouselContent className="-ml-2">
               {CASA_FOTOS.map((foto, i) => (
                 <CarouselItem key={i} className="pl-2 basis-4/5 sm:basis-3/4">
-                  <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.8)] aspect-[4/3] bg-black/40">
+                  <button
+                    type="button"
+                    onClick={() => setLightboxIndex(i)}
+                    className="group relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.8)] aspect-[4/3] bg-black/40 w-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ff7a5a] cursor-zoom-in"
+                    aria-label={`Ampliar foto: ${foto.alt}`}
+                  >
                     <img
                       src={foto.src}
                       alt={foto.alt}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                  </div>
+                  </button>
                 </CarouselItem>
               ))}
             </CarouselContent>
