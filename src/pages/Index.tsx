@@ -1,8 +1,25 @@
 import { useState } from "react";
 import { MapPin, UtensilsCrossed, Globe, Bike, MessageCircle, Users, Clock, Cake, Tv, Beer, Sandwich, CreditCard } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay";
 import { LinkButton } from "@/components/LinkButton";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import onfireLogo from "@/assets/onfire-logo.webp";
 import seloBbq from "@/assets/selo-bbq.svg";
+import casa1 from "@/assets/casa/onfire-1.jpg";
+import casa2 from "@/assets/casa/onfire-2.jpg";
+import casa3 from "@/assets/casa/onfire-3.jpg";
+import casa4 from "@/assets/casa/onfire-4.jpg";
+import casa5 from "@/assets/casa/onfire-5.jpg";
+import casa6 from "@/assets/casa/onfire-6.jpg";
+
+const CASA_FOTOS = [
+  { src: casa1, alt: "Salão com vista para a praia" },
+  { src: casa2, alt: "Salão central com decoração rústica" },
+  { src: casa3, alt: "Ambiente interno com vista" },
+  { src: casa4, alt: "Área externa coberta" },
+  { src: casa5, alt: "Segundo andar com TVs e churrasqueira" },
+  { src: casa6, alt: "Área externa com mesas" },
+];
 
 const DAYS = [
   { key: 0, short: "Dom", label: "Domingo", hours: "11:30 às 23h" },
