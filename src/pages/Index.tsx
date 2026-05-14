@@ -1,8 +1,25 @@
 import { useState } from "react";
 import { MapPin, UtensilsCrossed, Globe, Bike, MessageCircle, Users, Clock, Cake, Tv, Beer, Sandwich, CreditCard } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay";
 import { LinkButton } from "@/components/LinkButton";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import onfireLogo from "@/assets/onfire-logo.webp";
 import seloBbq from "@/assets/selo-bbq.svg";
+import casa1 from "@/assets/casa/onfire-1.jpg";
+import casa2 from "@/assets/casa/onfire-2.jpg";
+import casa3 from "@/assets/casa/onfire-3.jpg";
+import casa4 from "@/assets/casa/onfire-4.jpg";
+import casa5 from "@/assets/casa/onfire-5.jpg";
+import casa6 from "@/assets/casa/onfire-6.jpg";
+
+const CASA_FOTOS = [
+  { src: casa1, alt: "Salão com vista para a praia" },
+  { src: casa2, alt: "Salão central com decoração rústica" },
+  { src: casa3, alt: "Ambiente interno com vista" },
+  { src: casa4, alt: "Área externa coberta" },
+  { src: casa5, alt: "Segundo andar com TVs e churrasqueira" },
+  { src: casa6, alt: "Área externa com mesas" },
+];
 
 const DAYS = [
   { key: 0, short: "Dom", label: "Domingo", hours: "11:30 às 23h" },
@@ -170,6 +187,32 @@ const Index = () => {
               <li>• <strong className="font-semibold">Segundo Andar</strong> — até 35 pessoas</li>
             </ul>
           </Section>
+
+          {/* Carrossel de fotos da casa */}
+          <Carousel
+            opts={{ loop: true, align: "start" }}
+            plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]}
+            className="w-full -mt-1"
+            aria-label="Fotos do espaço On Fire"
+          >
+            <CarouselContent className="-ml-2">
+              {CASA_FOTOS.map((foto, i) => (
+                <CarouselItem key={i} className="pl-2 basis-4/5 sm:basis-3/4">
+                  <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.8)] aspect-[4/3] bg-black/40">
+                    <img
+                      src={foto.src}
+                      alt={foto.alt}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-2 hidden sm:flex bg-black/60 border-white/20 text-white hover:bg-black/80 hover:text-white" />
+            <CarouselNext className="right-2 hidden sm:flex bg-black/60 border-white/20 text-white hover:bg-black/80 hover:text-white" />
+          </Carousel>
 
           <Section
             icon={<Clock />}
