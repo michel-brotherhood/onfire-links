@@ -188,6 +188,32 @@ const Index = () => {
             </ul>
           </Section>
 
+          {/* Carrossel de fotos da casa */}
+          <Carousel
+            opts={{ loop: true, align: "start" }}
+            plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]}
+            className="w-full -mt-1"
+            aria-label="Fotos do espaço On Fire"
+          >
+            <CarouselContent className="-ml-2">
+              {CASA_FOTOS.map((foto, i) => (
+                <CarouselItem key={i} className="pl-2 basis-4/5 sm:basis-3/4">
+                  <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.8)] aspect-[4/3] bg-black/40">
+                    <img
+                      src={foto.src}
+                      alt={foto.alt}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-2 hidden sm:flex bg-black/60 border-white/20 text-white hover:bg-black/80 hover:text-white" />
+            <CarouselNext className="right-2 hidden sm:flex bg-black/60 border-white/20 text-white hover:bg-black/80 hover:text-white" />
+          </Carousel>
+
           <Section
             icon={<Clock />}
             title="Horários de funcionamento"
