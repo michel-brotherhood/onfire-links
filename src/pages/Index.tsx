@@ -411,7 +411,7 @@ const Index = () => {
           {lightboxIndex !== null && (
             <div className="relative w-full">
               <img
-                src={CASA_FOTOS[lightboxIndex].src}
+                src={CASA_FOTOS[lightboxIndex].full}
                 alt={CASA_FOTOS[lightboxIndex].alt}
                 className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
               />
