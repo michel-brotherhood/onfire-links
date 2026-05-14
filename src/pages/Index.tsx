@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { MapPin, UtensilsCrossed, Globe, Bike, MessageCircle, Users, Clock, Cake, Tv, Beer, Sandwich, CreditCard } from "lucide-react";
+import { MapPin, UtensilsCrossed, Globe, Bike, MessageCircle, Users, Clock, Cake, Tv, Beer, Sandwich, CreditCard, ChevronLeft, ChevronRight, X } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 import { LinkButton } from "@/components/LinkButton";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import onfireLogo from "@/assets/onfire-logo.webp";
 import seloBbq from "@/assets/selo-bbq.svg";
 import casa1 from "@/assets/casa/onfire-1.jpg";
@@ -69,6 +71,10 @@ const Section = ({ icon, title, subtitle, children }: SectionProps) => (
 const Index = () => {
   const todayKey = new Date().getDay();
   const [selectedDay, setSelectedDay] = useState<number>(todayKey);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const lightboxOpen = lightboxIndex !== null;
+  const showPrev = () => setLightboxIndex((i) => (i === null ? i : (i - 1 + CASA_FOTOS.length) % CASA_FOTOS.length));
+  const showNext = () => setLightboxIndex((i) => (i === null ? i : (i + 1) % CASA_FOTOS.length));
 
   return (
     <div
@@ -198,15 +204,20 @@ const Index = () => {
             <CarouselContent className="-ml-2">
               {CASA_FOTOS.map((foto, i) => (
                 <CarouselItem key={i} className="pl-2 basis-4/5 sm:basis-3/4">
-                  <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.8)] aspect-[4/3] bg-black/40">
+                  <button
+                    type="button"
+                    onClick={() => setLightboxIndex(i)}
+                    className="group relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.8)] aspect-[4/3] bg-black/40 w-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ff7a5a] cursor-zoom-in"
+                    aria-label={`Ampliar foto: ${foto.alt}`}
+                  >
                     <img
                       src={foto.src}
                       alt={foto.alt}
                       loading="lazy"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                  </div>
+                  </button>
                 </CarouselItem>
               ))}
             </CarouselContent>
@@ -371,6 +382,64 @@ const Index = () => {
           Copyright © 2024 OnFire | Todos os Direitos Reservados.
         </footer>
       </main>
+
+      {/* Lightbox */}
+      <Dialog open={lightboxOpen} onOpenChange={(o) => !o && setLightboxIndex(null)}>
+        <DialogContent
+          className="max-w-[96vw] sm:max-w-4xl w-full p-0 bg-black/95 border-white/10 [&>button]:hidden"
+          onKeyDown={(e) => {
+            if (e.key === "ArrowLeft") showPrev();
+            if (e.key === "ArrowRight") showNext();
+          }}
+        >
+          <VisuallyHidden>
+            <DialogTitle>Foto do espaço On Fire</DialogTitle>
+            <DialogDescription>
+              {lightboxIndex !== null ? CASA_FOTOS[lightboxIndex].alt : ""}
+            </DialogDescription>
+          </VisuallyHidden>
+
+          {lightboxIndex !== null && (
+            <div className="relative w-full">
+              <img
+                src={CASA_FOTOS[lightboxIndex].src}
+                alt={CASA_FOTOS[lightboxIndex].alt}
+                className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
+              />
+
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(null)}
+                aria-label="Fechar"
+                className="absolute top-2 right-2 size-9 rounded-full bg-black/70 hover:bg-black/90 ring-1 ring-white/20 flex items-center justify-center text-white transition"
+              >
+                <X className="size-5" />
+              </button>
+
+              <button
+                type="button"
+                onClick={showPrev}
+                aria-label="Foto anterior"
+                className="absolute left-2 top-1/2 -translate-y-1/2 size-10 rounded-full bg-black/70 hover:bg-black/90 ring-1 ring-white/20 flex items-center justify-center text-white transition"
+              >
+                <ChevronLeft className="size-5" />
+              </button>
+              <button
+                type="button"
+                onClick={showNext}
+                aria-label="Próxima foto"
+                className="absolute right-2 top-1/2 -translate-y-1/2 size-10 rounded-full bg-black/70 hover:bg-black/90 ring-1 ring-white/20 flex items-center justify-center text-white transition"
+              >
+                <ChevronRight className="size-5" />
+              </button>
+
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-black/70 ring-1 ring-white/15 text-white text-xs">
+                {lightboxIndex + 1} / {CASA_FOTOS.length}
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
