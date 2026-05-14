@@ -7,20 +7,26 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import onfireLogo from "@/assets/onfire-logo.webp";
 import seloBbq from "@/assets/selo-bbq.svg";
-import casa1 from "@/assets/casa/onfire-1.jpg";
-import casa2 from "@/assets/casa/onfire-2.jpg";
-import casa3 from "@/assets/casa/onfire-3.jpg";
-import casa4 from "@/assets/casa/onfire-4.jpg";
-import casa5 from "@/assets/casa/onfire-5.jpg";
-import casa6 from "@/assets/casa/onfire-6.jpg";
+import casa1 from "@/assets/casa/onfire-1.webp";
+import casa2 from "@/assets/casa/onfire-2.webp";
+import casa3 from "@/assets/casa/onfire-3.webp";
+import casa4 from "@/assets/casa/onfire-4.webp";
+import casa5 from "@/assets/casa/onfire-5.webp";
+import casa6 from "@/assets/casa/onfire-6.webp";
+import casa1Lg from "@/assets/casa/onfire-1-lg.webp";
+import casa2Lg from "@/assets/casa/onfire-2-lg.webp";
+import casa3Lg from "@/assets/casa/onfire-3-lg.webp";
+import casa4Lg from "@/assets/casa/onfire-4-lg.webp";
+import casa5Lg from "@/assets/casa/onfire-5-lg.webp";
+import casa6Lg from "@/assets/casa/onfire-6-lg.webp";
 
 const CASA_FOTOS = [
-  { src: casa1, alt: "Salão com vista para a praia" },
-  { src: casa2, alt: "Salão central com decoração rústica" },
-  { src: casa3, alt: "Ambiente interno com vista" },
-  { src: casa4, alt: "Área externa coberta" },
-  { src: casa5, alt: "Segundo andar com TVs e churrasqueira" },
-  { src: casa6, alt: "Área externa com mesas" },
+  { src: casa1, full: casa1Lg, alt: "Salão com vista para a praia" },
+  { src: casa2, full: casa2Lg, alt: "Salão central com decoração rústica" },
+  { src: casa3, full: casa3Lg, alt: "Ambiente interno com vista" },
+  { src: casa4, full: casa4Lg, alt: "Área externa coberta" },
+  { src: casa5, full: casa5Lg, alt: "Segundo andar com TVs e churrasqueira" },
+  { src: casa6, full: casa6Lg, alt: "Área externa com mesas" },
 ];
 
 const DAYS = [
@@ -214,6 +220,9 @@ const Index = () => {
                       src={foto.src}
                       alt={foto.alt}
                       loading="lazy"
+                      decoding="async"
+                      width={800}
+                      height={600}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
@@ -402,7 +411,7 @@ const Index = () => {
           {lightboxIndex !== null && (
             <div className="relative w-full">
               <img
-                src={CASA_FOTOS[lightboxIndex].src}
+                src={CASA_FOTOS[lightboxIndex].full}
                 alt={CASA_FOTOS[lightboxIndex].alt}
                 className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
               />
