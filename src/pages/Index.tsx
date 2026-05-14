@@ -71,6 +71,10 @@ const Section = ({ icon, title, subtitle, children }: SectionProps) => (
 const Index = () => {
   const todayKey = new Date().getDay();
   const [selectedDay, setSelectedDay] = useState<number>(todayKey);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const lightboxOpen = lightboxIndex !== null;
+  const showPrev = () => setLightboxIndex((i) => (i === null ? i : (i - 1 + CASA_FOTOS.length) % CASA_FOTOS.length));
+  const showNext = () => setLightboxIndex((i) => (i === null ? i : (i + 1) % CASA_FOTOS.length));
 
   return (
     <div
