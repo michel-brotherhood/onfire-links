@@ -246,6 +246,7 @@ const Index = () => {
           <Carousel
             opts={{ loop: true, align: "start" }}
             plugins={[Autoplay({ delay: 4000, stopOnInteraction: true })]}
+            setApi={setCarouselApi}
             className="w-full -mt-1"
             aria-label="Fotos do espaço On Fire"
           >
@@ -255,13 +256,17 @@ const Index = () => {
                   <button
                     type="button"
                     onClick={() => setLightboxIndex(i)}
+                    onMouseEnter={() => preload(foto.full)}
+                    onTouchStart={() => preload(foto.full)}
+                    onFocus={() => preload(foto.full)}
                     className="group relative overflow-hidden rounded-2xl ring-1 ring-white/10 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.8)] aspect-[4/3] bg-black/40 w-full block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ff7a5a] cursor-zoom-in"
                     aria-label={`Ampliar foto: ${foto.alt}`}
                   >
                     <img
                       src={foto.src}
                       alt={foto.alt}
-                      loading="lazy"
+                      loading={i < 2 ? "eager" : "lazy"}
+                      fetchPriority={i === 0 ? "high" : "auto"}
                       decoding="async"
                       width={800}
                       height={600}
@@ -275,6 +280,7 @@ const Index = () => {
             <CarouselPrevious className="left-2 hidden sm:flex bg-black/60 border-white/20 text-white hover:bg-black/80 hover:text-white" />
             <CarouselNext className="right-2 hidden sm:flex bg-black/60 border-white/20 text-white hover:bg-black/80 hover:text-white" />
           </Carousel>
+
 
           <Section
             icon={<Clock />}
