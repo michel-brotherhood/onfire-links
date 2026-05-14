@@ -382,6 +382,64 @@ const Index = () => {
           Copyright © 2024 OnFire | Todos os Direitos Reservados.
         </footer>
       </main>
+
+      {/* Lightbox */}
+      <Dialog open={lightboxOpen} onOpenChange={(o) => !o && setLightboxIndex(null)}>
+        <DialogContent
+          className="max-w-[96vw] sm:max-w-4xl w-full p-0 bg-black/95 border-white/10 [&>button]:hidden"
+          onKeyDown={(e) => {
+            if (e.key === "ArrowLeft") showPrev();
+            if (e.key === "ArrowRight") showNext();
+          }}
+        >
+          <VisuallyHidden>
+            <DialogTitle>Foto do espaço On Fire</DialogTitle>
+            <DialogDescription>
+              {lightboxIndex !== null ? CASA_FOTOS[lightboxIndex].alt : ""}
+            </DialogDescription>
+          </VisuallyHidden>
+
+          {lightboxIndex !== null && (
+            <div className="relative w-full">
+              <img
+                src={CASA_FOTOS[lightboxIndex].src}
+                alt={CASA_FOTOS[lightboxIndex].alt}
+                className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
+              />
+
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(null)}
+                aria-label="Fechar"
+                className="absolute top-2 right-2 size-9 rounded-full bg-black/70 hover:bg-black/90 ring-1 ring-white/20 flex items-center justify-center text-white transition"
+              >
+                <X className="size-5" />
+              </button>
+
+              <button
+                type="button"
+                onClick={showPrev}
+                aria-label="Foto anterior"
+                className="absolute left-2 top-1/2 -translate-y-1/2 size-10 rounded-full bg-black/70 hover:bg-black/90 ring-1 ring-white/20 flex items-center justify-center text-white transition"
+              >
+                <ChevronLeft className="size-5" />
+              </button>
+              <button
+                type="button"
+                onClick={showNext}
+                aria-label="Próxima foto"
+                className="absolute right-2 top-1/2 -translate-y-1/2 size-10 rounded-full bg-black/70 hover:bg-black/90 ring-1 ring-white/20 flex items-center justify-center text-white transition"
+              >
+                <ChevronRight className="size-5" />
+              </button>
+
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-black/70 ring-1 ring-white/15 text-white text-xs">
+                {lightboxIndex + 1} / {CASA_FOTOS.length}
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
