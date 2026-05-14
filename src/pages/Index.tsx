@@ -220,6 +220,9 @@ const Index = () => {
                       src={foto.src}
                       alt={foto.alt}
                       loading="lazy"
+                      decoding="async"
+                      width={800}
+                      height={600}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
