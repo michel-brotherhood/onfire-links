@@ -13,20 +13,26 @@ import casa3 from "@/assets/casa/onfire-3.webp";
 import casa4 from "@/assets/casa/onfire-4.webp";
 import casa5 from "@/assets/casa/onfire-5.webp";
 import casa6 from "@/assets/casa/onfire-6.webp";
+import casa7 from "@/assets/casa/onfire-7.webp";
+import casa8 from "@/assets/casa/onfire-8.webp";
 import casa1Lg from "@/assets/casa/onfire-1-lg.webp";
 import casa2Lg from "@/assets/casa/onfire-2-lg.webp";
 import casa3Lg from "@/assets/casa/onfire-3-lg.webp";
 import casa4Lg from "@/assets/casa/onfire-4-lg.webp";
 import casa5Lg from "@/assets/casa/onfire-5-lg.webp";
 import casa6Lg from "@/assets/casa/onfire-6-lg.webp";
+import casa7Lg from "@/assets/casa/onfire-7-lg.webp";
+import casa8Lg from "@/assets/casa/onfire-8-lg.webp";
 
 const CASA_FOTOS = [
+  { src: casa7, full: casa7Lg, alt: "Fachada do On Fire American BBQ" },
   { src: casa1, full: casa1Lg, alt: "Salão com vista para a praia" },
   { src: casa2, full: casa2Lg, alt: "Salão central com decoração rústica" },
   { src: casa3, full: casa3Lg, alt: "Ambiente interno com vista" },
   { src: casa4, full: casa4Lg, alt: "Área externa coberta" },
   { src: casa5, full: casa5Lg, alt: "Segundo andar com TVs e churrasqueira" },
   { src: casa6, full: casa6Lg, alt: "Área externa com mesas" },
+  { src: casa8, full: casa8Lg, alt: "Área Kids com brinquedos e arcade" },
 ];
 
 const DAYS = [
